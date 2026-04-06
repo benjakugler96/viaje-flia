@@ -12,13 +12,86 @@ const flights = [
 ];
 
 const stays = [
-  { city: "Barcelona", country: "🇪🇸", dates: "27-28 Dic", nights: 2, emoji: "🏙️", gradient: "linear-gradient(135deg, #2D1B69, #E94560)" },
-  { city: "Singapur", country: "🇸🇬", dates: "30-31 Dic", nights: 2, emoji: "🦁", gradient: "linear-gradient(135deg, #0F3443, #34E89E)" },
-  { city: "Bangkok", country: "🇹🇭", dates: "1-3 Ene", nights: 3, emoji: "🛕", gradient: "linear-gradient(135deg, #C33764, #E8B84E)" },
-  { city: "Chiang Mai", country: "🇹🇭", dates: "4-6 Ene", nights: 3, emoji: "🐘", gradient: "linear-gradient(135deg, #134E5E, #71B280)" },
-  { city: "Bangkok", country: "🇹🇭", dates: "7 Ene", nights: 1, emoji: "🛕", gradient: "linear-gradient(135deg, #C33764, #E8B84E)" },
-  { city: "Madrid", country: "🇪🇸", dates: "9-10 Ene", nights: 2, emoji: "🏛️", gradient: "linear-gradient(135deg, #4A1942, #C74B50)", note: "Solo familia" },
+  { city: "Barcelona", country: "🇪🇸", dates: "27-28 Dic", nights: 2, emoji: "🏙️", gradient: "linear-gradient(135deg, #2D1B69, #E94560)", key: "barcelona" },
+  { city: "Singapur", country: "🇸🇬", dates: "30-31 Dic", nights: 2, emoji: "🦁", gradient: "linear-gradient(135deg, #0F3443, #34E89E)", key: "singapur" },
+  { city: "Bangkok", country: "🇹🇭", dates: "1-3 Ene", nights: 3, emoji: "🛕", gradient: "linear-gradient(135deg, #C33764, #E8B84E)", key: "bangkok" },
+  { city: "Chiang Mai", country: "🇹🇭", dates: "4-6 Ene", nights: 3, emoji: "🐘", gradient: "linear-gradient(135deg, #134E5E, #71B280)", key: "chiangmai" },
+  { city: "Bangkok", country: "🇹🇭", dates: "7 Ene", nights: 1, emoji: "🛕", gradient: "linear-gradient(135deg, #C33764, #E8B84E)", key: "bangkok_noche", note2: "Última noche" },
+  { city: "Madrid", country: "🇪🇸", dates: "9-10 Ene", nights: 2, emoji: "🏛️", gradient: "linear-gradient(135deg, #4A1942, #C74B50)", note: "Solo familia", key: "madrid" },
 ];
+
+const cityHighlights = {
+  singapur: {
+    title: "Singapur",
+    subtitle: "30-31 Dic · 2 noches",
+    emoji: "🦁",
+    gradient: "linear-gradient(135deg, #0F3443, #34E89E)",
+    items: [
+      { name: "Gardens by the Bay", desc: "Jardines futuristas con Cloud Forest, Flower Dome y Supertrees iluminados", url: "https://www.gardensbythebay.com.sg", emoji: "🌳" },
+      { name: "Marina Bay Sands", desc: "Hotel icónico con SkyPark, piscina infinita y show de luces Spectra", url: "https://www.marinabaysands.com", emoji: "🏨" },
+      { name: "Chinatown & Buddha Tooth Relic Temple", desc: "Barrio histórico con templos y mercados callejeros", url: "https://www.chinatown.sg", emoji: "🏮" },
+      { name: "Kampong Glam / Haji Lane", desc: "Barrio árabe con la Mezquita del Sultán, boutiques y street art", url: "https://www.visitsingapore.com/see-do-singapore/places-to-see/kampong-glam/", emoji: "🕌" },
+      { name: "Hawker Food Culture", desc: "Gastronomía callejera patrimonio UNESCO: chicken rice, laksa, satay", url: "https://www.visitsingapore.com/dining-drinks-singapore/local-food/hawker-centres/", emoji: "🍜" },
+      { name: "Sentosa Island", desc: "Isla con playas, Universal Studios y S.E.A. Aquarium", url: "https://www.sentosa.com.sg", emoji: "🏝️" },
+      { name: "Little India", desc: "Barrio colorido con templos hindúes, especias y comida india", url: "https://www.visitsingapore.com/see-do-singapore/places-to-see/little-india/", emoji: "🎨" },
+      { name: "Merlion Park", desc: "Estatua icónica del Merlion frente a la bahía", url: "https://www.visitsingapore.com/see-do-singapore/recreation-leisure/viewpoints/merlion-park/", emoji: "🦁" },
+      { name: "Marina Bay Countdown (NYE)", desc: "Fuegos artificiales y fiesta de Año Nuevo sobre Marina Bay", url: "https://www.marinabaycountdown.gov.sg", emoji: "🎆" },
+      { name: "Clarke Quay", desc: "Vida nocturna junto al río: bares y restaurantes en almacenes restaurados", url: "https://www.clarkequay.com.sg", emoji: "🍸" },
+    ],
+  },
+  bangkok: {
+    title: "Bangkok",
+    subtitle: "1-3 Ene · 3 noches",
+    emoji: "🛕",
+    gradient: "linear-gradient(135deg, #C33764, #E8B84E)",
+    items: [
+      { name: "Grand Palace + Wat Phra Kaew", desc: "Complejo real más sagrado con el Buda de Esmeralda", url: "https://www.royalgrandpalace.th", emoji: "👑" },
+      { name: "Wat Pho", desc: "Buda reclinado de 46m cubierto en pan de oro", url: "https://www.watpho.com", emoji: "🛕" },
+      { name: "Wat Arun", desc: "Templo icónico a orillas del Chao Phraya decorado en porcelana", url: "https://www.watarun.net", emoji: "🌅" },
+      { name: "Yaowarat / Chinatown", desc: "Street food nocturno legendario", url: "https://www.tripadvisor.com/Attraction_Review-g293916-d311370-Reviews-Chinatown_Bangkok-Bangkok.html", emoji: "🥡" },
+      { name: "Chatuchak / Jodd Fairs", desc: "Mercados enormes de comida, ropa y artesanías", url: "https://www.chatuchakmarket.org", emoji: "🛍️" },
+      { name: "Floating Market", desc: "Mercado flotante tradicional en botes de madera", url: "https://www.tripadvisor.com/Attraction_Review-g1507925-d311696-Reviews-Damnoen_Saduak_Floating_Market-Damnoen_Saduak_Ratchaburi_Province.html", emoji: "🛶" },
+      { name: "Khao San Road", desc: "La calle mochilera más famosa del mundo", url: "https://www.tripadvisor.com/Attraction_Review-g293916-d555538-Reviews-Khao_San_Road-Bangkok.html", emoji: "🎉" },
+      { name: "Mahanakhon SkyWalk", desc: "Mirador piso 78 con piso de vidrio y vistas panorámicas", url: "https://kingpowermahanakhon.co.th", emoji: "🏙️" },
+      { name: "Sky Bar at Lebua", desc: "Rooftop bar piso 63, famoso por \"The Hangover Part II\"", url: "https://www.lebua.com/sky-bar", emoji: "🍹" },
+      { name: "Thai Massage en Wat Pho", desc: "Escuela de masaje tailandés más antigua y prestigiosa", url: "https://www.watpomassage.com", emoji: "💆" },
+      { name: "Jim Thompson House", desc: "Casa-museo del empresario de la seda, jardines tropicales", url: "https://www.jimthompsonhouse.com", emoji: "🏡" },
+    ],
+  },
+  chiangmai: {
+    title: "Chiang Mai",
+    subtitle: "4-6 Ene · 3 noches",
+    emoji: "🐘",
+    gradient: "linear-gradient(135deg, #134E5E, #71B280)",
+    items: [
+      { name: "Wat Phra That Doi Suthep", desc: "Templo sagrado en la cima de la montaña con vistas panorámicas", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d311043-Reviews-Wat_Phra_That_Doi_Suthep-Chiang_Mai.html", emoji: "⛰️" },
+      { name: "Elephant Nature Park", desc: "Santuario ético de elefantes rescatados", url: "https://www.elephantnaturepark.org/", emoji: "🐘" },
+      { name: "Wat Chedi Luang", desc: "Templo del siglo XIV con pagoda imponente en ruinas", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d317259-Reviews-Wat_Chedi_Luang_Varavihara-Chiang_Mai.html", emoji: "🛕" },
+      { name: "Wat Phra Singh", desc: "Templo real con la venerada imagen del Buda Phra Singh", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d311038-Reviews-Wat_Phra_Singh-Chiang_Mai.html", emoji: "🙏" },
+      { name: "Sunday Walking Street Market", desc: "Mercado dominical con artesanías, comida y música en vivo", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d1773904-Reviews-Sunday_Walking_Street-Chiang_Mai.html", emoji: "🎪" },
+      { name: "Thai Cooking Class", desc: "Clase de cocina con visita al mercado y platos del norte", url: "https://www.thaifarmcooking.com/", emoji: "👨‍🍳" },
+      { name: "Khao Soi", desc: "Sopa de fideos con curry y coco, plato emblemático del norte", url: "https://www.tripadvisor.com/Restaurant_Review-g293917-d1510592-Reviews-Khao_Soi_Khun_Yai-Chiang_Mai.html", emoji: "🍲" },
+      { name: "Wat Umong", desc: "Templo en el bosque con túneles antiguos del siglo XIV", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d311048-Reviews-Wat_Umong-Chiang_Mai.html", emoji: "🌿" },
+      { name: "Bua Tong Sticky Waterfalls", desc: "Cascadas de piedra caliza que podés escalar a pie descalzo", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d3407907-Reviews-Bua_Tong_Sticky_Waterfalls-Chiang_Mai.html", emoji: "🏞️" },
+      { name: "Doi Inthanon National Park", desc: "Pico más alto de Tailandia, cascadas, pagodas y senderos", url: "https://www.tripadvisor.com/Attraction_Review-g1112017-d455948-Reviews-Doi_Inthanon_National_Park-Doi_Inthanon_National_Park_Chom_Thong_Chiang_Mai_Provin.html", emoji: "🏔️" },
+      { name: "Night Bazaar", desc: "Mercado nocturno de artesanías, souvenirs y street food", url: "https://www.tripadvisor.com/Attraction_Review-g293917-d311041-Reviews-Chiang_Mai_Night_Bazaar-Chiang_Mai.html", emoji: "🌙" },
+    ],
+  },
+  bangkok_noche: {
+    title: "Bangkok",
+    subtitle: "7 Ene · Última noche",
+    emoji: "🌃",
+    gradient: "linear-gradient(135deg, #C33764, #E8B84E)",
+    note: "Llegada ~18:40 — una noche de despedida para repetir lo mejor",
+    items: [
+      { name: "Yaowarat / Chinatown", desc: "Street food nocturno legendario", url: "https://www.tripadvisor.com/Attraction_Review-g293916-d311370-Reviews-Chinatown_Bangkok-Bangkok.html", emoji: "🥡" },
+      { name: "Sky Bar at Lebua", desc: "Rooftop bar piso 63, famoso por \"The Hangover Part II\"", url: "https://www.lebua.com/sky-bar", emoji: "🍹" },
+      { name: "Khao San Road", desc: "La calle mochilera más famosa del mundo", url: "https://www.tripadvisor.com/Attraction_Review-g293916-d555538-Reviews-Khao_San_Road-Bangkok.html", emoji: "🎉" },
+      { name: "Jodd Fairs", desc: "Night market trendy con comida, ropa vintage y música", url: "https://www.chatuchakmarket.org", emoji: "🛍️" },
+      { name: "Mahanakhon SkyWalk", desc: "Mirador piso 78 con piso de vidrio — espectacular de noche", url: "https://kingpowermahanakhon.co.th", emoji: "🏙️" },
+    ],
+  },
+};
 
 const pending = [
   "Tren/vuelo BCN ↔ MAD (familia)",
@@ -73,9 +146,117 @@ const FlightCard = ({ f, isSelected, onClick }) => (
   </div>
 );
 
+const CityDetail = ({ cityKey, onBack }) => {
+  const city = cityHighlights[cityKey];
+  if (!city) return null;
+
+  return (
+    <div className="dashboard" style={{
+      minHeight: "100vh",
+      background: "#0A0A0F",
+      color: "#fff",
+      fontFamily: "'Outfit', 'Helvetica Neue', sans-serif",
+      padding: "32px 24px",
+    }}>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+      {/* Back button */}
+      <div
+        onClick={onBack}
+        style={{
+          display: "inline-flex", alignItems: "center", gap: 8,
+          cursor: "pointer", marginBottom: 24,
+          fontSize: 13, color: "rgba(255,255,255,0.45)",
+          fontFamily: "'JetBrains Mono', monospace",
+          transition: "color 0.2s",
+        }}
+        onMouseEnter={e => e.currentTarget.style.color = "#fff"}
+        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}
+      >
+        ← Volver al dashboard
+      </div>
+
+      {/* City header */}
+      <div style={{
+        background: city.gradient, borderRadius: 20, padding: "32px 28px",
+        position: "relative", overflow: "hidden", marginBottom: 32,
+      }}>
+        <div style={{ position: "absolute", top: 16, right: 24, fontSize: 64, opacity: 0.15 }}>{city.emoji}</div>
+        <div style={{ fontSize: 12, opacity: 0.7, marginBottom: 4, fontFamily: "'JetBrains Mono', monospace" }}>
+          {city.subtitle}
+        </div>
+        <h1 style={{ fontSize: 36, fontWeight: 800, margin: 0, letterSpacing: -1 }}>
+          {city.title}
+        </h1>
+        {city.note && (
+          <div style={{ marginTop: 10, fontSize: 13, opacity: 0.7, fontFamily: "'JetBrains Mono', monospace" }}>
+            {city.note}
+          </div>
+        )}
+      </div>
+
+      {/* Section title */}
+      <h2 style={{
+        fontSize: 13, letterSpacing: 3, color: "rgba(255,255,255,0.35)",
+        textTransform: "uppercase", marginBottom: 16,
+        fontFamily: "'JetBrains Mono', monospace",
+      }}>
+        Imperdibles
+      </h2>
+
+      {/* Items grid */}
+      <div className="highlights-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+        {city.items.map((item, i) => (
+          <a
+            key={i}
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-card"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 16,
+              padding: "20px",
+              textDecoration: "none",
+              color: "#fff",
+              transition: "all 0.3s ease",
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ fontSize: 24 }}>{item.emoji}</span>
+              <span style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.3 }}>{item.name}</span>
+            </div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
+              {item.desc}
+            </div>
+            <div style={{
+              fontSize: 11, color: "rgba(255,255,255,0.25)",
+              fontFamily: "'JetBrains Mono', monospace",
+              marginTop: "auto",
+            }}>
+              🔗 Más info
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function TripDashboard() {
   const [selectedFlight, setSelectedFlight] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   const totalVuelos = flights.filter(f => f.price).reduce((s, f) => s + f.price, 0);
+
+  if (selectedCity) {
+    return <CityDetail cityKey={selectedCity} onBack={() => setSelectedCity(null)} />;
+  }
 
   return (
     <div className="dashboard" style={{
@@ -126,24 +307,38 @@ export default function TripDashboard() {
       <div style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 13, letterSpacing: 3, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: 14, fontFamily: "'JetBrains Mono', monospace" }}>Estadías</h2>
         <div className="stays-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
-          {stays.map((s, i) => (
-            <div key={i} style={{
-              background: s.gradient, borderRadius: 16, padding: "20px 16px",
-              position: "relative", overflow: "hidden", minHeight: 120,
-              display: "flex", flexDirection: "column", justifyContent: "space-between",
-            }}>
-              <div style={{ position: "absolute", top: 10, right: 14, fontSize: 36, opacity: 0.25 }}>{s.emoji}</div>
-              <div>
-                <div style={{ fontSize: 11, opacity: 0.7, marginBottom: 2 }}>{s.country} {s.dates}</div>
-                <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>{s.city}</div>
+          {stays.map((s, i) => {
+            const hasHighlights = cityHighlights[s.key];
+            return (
+              <div
+                key={i}
+                onClick={() => hasHighlights && setSelectedCity(s.key)}
+                style={{
+                  background: s.gradient, borderRadius: 16, padding: "20px 16px",
+                  position: "relative", overflow: "hidden", minHeight: 120,
+                  display: "flex", flexDirection: "column", justifyContent: "space-between",
+                  cursor: hasHighlights ? "pointer" : "default",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                }}
+                className={hasHighlights ? "stay-card-clickable" : ""}
+              >
+                <div style={{ position: "absolute", top: 10, right: 14, fontSize: 36, opacity: 0.25 }}>{s.emoji}</div>
+                <div>
+                  <div style={{ fontSize: 11, opacity: 0.7, marginBottom: 2 }}>{s.country} {s.dates}</div>
+                  <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>{s.city}</div>
+                  {s.note2 && <div style={{ fontSize: 11, opacity: 0.6, marginTop: 2 }}>{s.note2}</div>}
+                </div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div style={{
+                    fontSize: 12, fontWeight: 600, background: "rgba(0,0,0,0.25)",
+                    display: "inline-flex", gap: 8, alignItems: "center", padding: "4px 10px", borderRadius: 20, width: "fit-content",
+                    fontFamily: "'JetBrains Mono', monospace",
+                  }}>{s.nights} {s.nights === 1 ? "noche" : "noches"}{s.note ? ` · ${s.note}` : ""}</div>
+                  {hasHighlights && <span style={{ fontSize: 11, opacity: 0.5 }}>Ver más →</span>}
+                </div>
               </div>
-              <div style={{
-                fontSize: 12, fontWeight: 600, background: "rgba(0,0,0,0.25)",
-                display: "inline-flex", gap: 8, alignItems: "center", padding: "4px 10px", borderRadius: 20, width: "fit-content",
-                fontFamily: "'JetBrains Mono', monospace",
-              }}>{s.nights} {s.nights === 1 ? "noche" : "noches"}{s.note ? ` · ${s.note}` : ""}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
