@@ -1,1 +1,58 @@
-/* No custom styles needed - all inline */
+/* Mobile responsive overrides */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 20px 16px !important;
+  }
+
+  .header {
+    margin-bottom: 28px !important;
+  }
+
+  .header-title {
+    font-size: 32px !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .stays-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .flights-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .costs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .total-bar {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+  }
+
+  .total-amount {
+    font-size: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 16px 12px !important;
+  }
+
+  .header-title {
+    font-size: 28px !important;
+  }
+
+  .stays-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

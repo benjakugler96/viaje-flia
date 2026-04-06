@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 const flights = [
   { id: 1, from: "ASU", to: "MAD", fromCity: "Asunción", toCity: "Madrid", date: "26 Dic", airline: "Air Europa UX24", dep: "14:10", arr: "05:10+1", duration: "11h", price: 1250, pax: "Familia", note: "ida/vuelta pp", direct: true, color: "#E8976D", url: "https://www.skyscanner.es/transporte/vuelos/asu/mad/261226/270110/config/9579-2612261410--32680-0-13870-2612270510%7C13870-2701102345--32680-0-9579-2701110730?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false" },
@@ -77,7 +78,7 @@ export default function TripDashboard() {
   const totalVuelos = flights.filter(f => f.price).reduce((s, f) => s + f.price, 0);
 
   return (
-    <div style={{
+    <div className="dashboard" style={{
       minHeight: "100vh",
       background: "#0A0A0F",
       color: "#fff",
@@ -87,11 +88,11 @@ export default function TripDashboard() {
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: 40 }}>
+      <div className="header" style={{ textAlign: "center", marginBottom: 40 }}>
         <div style={{ fontSize: 13, letterSpacing: 4, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: 8, fontFamily: "'JetBrains Mono', monospace" }}>
           Dic 2026 — Ene 2027
         </div>
-        <h1 style={{
+        <h1 className="header-title" style={{
           fontSize: 44, fontWeight: 800, margin: 0, letterSpacing: -2,
           background: "linear-gradient(135deg, #6DC8E8, #E8D46D, #E86D9A, #9A6DE8)",
           WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
@@ -104,7 +105,7 @@ export default function TripDashboard() {
       </div>
 
       {/* Stats row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 32 }}>
+      <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 32 }}>
         {[
           { label: "Noches", value: 14, sub: "26 dic — 9 ene" },
           { label: "Ciudades", value: 5, sub: "BCN·SIN·BKK·CNX·MAD" },
@@ -124,7 +125,7 @@ export default function TripDashboard() {
       {/* Stays */}
       <div style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 13, letterSpacing: 3, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: 14, fontFamily: "'JetBrains Mono', monospace" }}>Estadías</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+        <div className="stays-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
           {stays.map((s, i) => (
             <div key={i} style={{
               background: s.gradient, borderRadius: 16, padding: "20px 16px",
@@ -149,7 +150,7 @@ export default function TripDashboard() {
       {/* Timeline */}
       <div style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 13, letterSpacing: 3, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: 14, fontFamily: "'JetBrains Mono', monospace" }}>Vuelos</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+        <div className="flights-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
           {flights.map((f) => (
             <FlightCard key={f.id} f={f} isSelected={selectedFlight === f.id} onClick={() => { setSelectedFlight(f.id); if (f.url) window.open(f.url, '_blank'); }} />
           ))}
@@ -159,7 +160,7 @@ export default function TripDashboard() {
       {/* Cost Breakdown */}
       <div style={{ marginBottom: 32 }}>
         <h2 style={{ fontSize: 13, letterSpacing: 3, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: 14, fontFamily: "'JetBrains Mono', monospace" }}>Desglose de costos <span style={{ opacity: 0.5 }}>(por persona)</span></h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="costs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           {/* Vuelos */}
           <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: 20 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
@@ -204,14 +205,14 @@ export default function TripDashboard() {
         </div>
 
         {/* Grand Total Bar */}
-        <div style={{
+        <div className="total-bar" style={{
           marginTop: 12, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
           borderRadius: 14, padding: "16px 20px",
           display: "flex", justifyContent: "space-between", alignItems: "center",
         }}>
           <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.6)" }}>Total por persona</span>
           <div style={{ textAlign: "right" }}>
-            <span style={{ fontSize: 28, fontWeight: 800, color: "#fff", fontFamily: "'Space Mono', monospace" }}>${totalVuelos.toFixed(0)}</span>
+            <span className="total-amount" style={{ fontSize: 28, fontWeight: 800, color: "#fff", fontFamily: "'Space Mono', monospace" }}>${totalVuelos.toFixed(0)}</span>
             <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginLeft: 8 }}>+ estadías</span>
           </div>
         </div>
